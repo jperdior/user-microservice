@@ -1,0 +1,33 @@
+version: "3.6"
+
+services:
+
+  user:
+    tty: true
+    build:
+      context: ../../code/user-component
+      dockerfile: ../../ops/docker/user/dev/Dockerfile
+    volumes:
+      - ../../code/user-component:/app
+      - ../../ops:/ops
+      - user-vendor:/user-component/vendor
+    restart: on-failure
+    depends_on:
+      - database
+
+  database:
+    image: mariadb:latest
+    environment:
+      - MARIADB_ROOT_PASSWORD=verysecretpass
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root --password=verysecretpass" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  user-vendor:
+  db:

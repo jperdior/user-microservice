@@ -1,0 +1,36 @@
+#!/bin/sh
+
+PHP_FPM_PID=
+NGINX_PID=
+
+export XDEBUG_CONFIG='start_with_request=yes'
+
+quit() {
+    kill -QUIT $NGINX_PID
+    kill -QUIT $PHP_FPM_PID
+}
+
+nginx -c "/app/ops/nginx/prod.conf" -t || exit 1
+php-fpm &
+PHP_FPM_PID=$!
+nginx -c "/app/ops/nginx/prod.conf" -g "daemon off;" &
+NGINX_PID=$!
+
+#script to wait for database container to start
+while ! nc -z 127.0.0.1 3306; do
+  sleep 1
+done
+
+/app/bin/console doctrine:database:create --if-not-exists
+/app/bin/console --no-interaction doctrine:migrations:migrate
+
+/app/bin/console assets:install
+
+/app/bin/console cache:clear --env=prod
+chown -R www-data:www-data /app
+
+#supervisord
+
+trap quit QUIT
+wait
+

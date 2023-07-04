@@ -1,0 +1,29 @@
+version: "3.6"
+
+services:
+
+  database:
+    ports:
+      - "3306:3306"
+    networks:
+      - user-network
+
+
+  user:
+    ports:
+      - "8080:8000"
+    environment:
+      - APP_ENV=dev
+      - APP_SECRET=15e95d0e2d6a37f4399c9dd2a1eae6f8
+      - JWT_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+      - MAILER_HOST=example.host
+      - MAILER_PORT=587
+      - MAILER_USER=noreply@example.host
+      - MAILER_PASSWORD=!pw4example
+    networks:
+      - user-network
+
+
+
+networks:
+  user-network:
