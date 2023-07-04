@@ -25,5 +25,5 @@ jobs:
       - name: Install dependencies
         run: cd code/user-component && composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Run Functional Tests
+      - name: Run Tests
         run: cd code/user-component && php bin/phpunit
