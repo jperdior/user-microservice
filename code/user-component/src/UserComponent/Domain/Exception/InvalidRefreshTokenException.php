@@ -6,10 +6,13 @@ namespace App\UserComponent\Domain\Exception;
 
 class InvalidRefreshTokenException extends \Exception
 {
-    public const MESSAGE = 'Invalid refresh token';
+    public const MESSAGE = 'Invalid refresh token: %s';
 
-    public function __construct()
+    public function __construct(?string $message)
     {
-        parent::__construct(message: self::MESSAGE, code: 401);
+        if(!$message){
+            $message = 'Invalid refresh token';
+        }
+        parent::__construct(sprintf(self::MESSAGE, $message), 401);
     }
 }

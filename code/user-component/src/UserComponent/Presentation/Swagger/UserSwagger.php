@@ -6,9 +6,11 @@ namespace App\UserComponent\Presentation\Swagger;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\UserComponent\Presentation\Controller\DeleteController;
 use App\UserComponent\Presentation\Controller\EditUserController;
 use App\UserComponent\Presentation\Controller\GetAuthenticatedUserController;
 use App\UserComponent\Presentation\Controller\LoginController;
@@ -140,6 +142,19 @@ use Symfony\Component\Validator\Constraints as Assert;
             ],
             denormalizationContext: [
                 'groups' => ['update'],
+            ],
+            read: false
+        ),
+        new Delete(
+            uriTemplate: '/user',
+            status: 200,
+            controller: DeleteController::class,
+            openapiContext: [
+                'summary' => 'Deletes the user',
+                'description' => 'Deletes the user',
+            ],
+            normalizationContext: [
+                'groups' => ['read'],
             ],
             read: false
         ),

@@ -1,0 +1,144 @@
+PHPUnit 9.6.9 by Sebastian Bergmann and contributors.
+
+Testing 
+.......                                                             7 / 7 (100%)
+
+Time: 00:00.404, Memory: 18.00 MB
+
+OK (7 tests, 30 assertions)
+
+
+[1;37;40mCode Coverage Report:     [0m
+[1;37;40m  2023-07-05 08:49:03     [0m
+[1;37;40m                          [0m
+[1;37;40m Summary:                 [0m
+[37;41m  Classes:  8.20% (5/61)  [0m
+[37;41m  Methods: 16.88% (26/154)[0m
+[37;41m  Lines:   14.60% (67/459)[0m
+
+App\Kernel
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\UserComponent\Application\Command\EditUserMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Command\EditUserMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 17)[0m
+App\UserComponent\Application\Command\LoginMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Command\LoginMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 14)[0m
+App\UserComponent\Application\Command\RefreshTokenMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Command\RefreshTokenMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  8)[0m
+App\UserComponent\Application\Command\RegisterMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Command\RegisterMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 15)[0m
+App\UserComponent\Application\Command\RequestPasswordResetEmailMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Command\RequestPasswordResetEmailMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  8)[0m
+App\UserComponent\Application\Command\ResetPasswordMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Command\ResetPasswordMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 12)[0m
+App\UserComponent\Application\DataTransformer\UserDataTransformer
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 12)[0m
+App\UserComponent\Application\Query\GetAuthenticatedUserMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Query\GetAuthenticatedUserMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\UserComponent\Application\Query\ValidateResetPasswordTokenMessage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Query\ValidateResetPasswordTokenMessageHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\UserComponent\Application\Security\AccessTokenHandler
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  8)[0m
+App\UserComponent\Application\Security\SecurityService
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Application\Security\UserSecurityEntity
+  [37;41mMethods:   0.00% ( 0/ 4)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\UserComponent\Application\Security\UserSecurityProvider
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 15)[0m
+App\UserComponent\Application\Service\JwtService
+  [37;41mMethods:   0.00% ( 0/ 6)[0m   [37;41mLines:   0.00% (  0/ 44)[0m
+App\UserComponent\Domain\Entity\Factory\UserFactory
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 10/ 10)[0m
+App\UserComponent\Domain\Entity\User
+  [37;41mMethods:  45.00% (18/40)[0m   [37;41mLines:  50.00% ( 24/ 48)[0m
+App\UserComponent\Domain\Exception\ErrorSendingResetPasswordEmailException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\Exception\ExpiredAccessTokenException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\Exception\ExpiredRefreshTokenException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\Exception\ExpiredResetPasswordTokenException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\Exception\IncorrectEmailOrPasswordException
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  1/  1)[0m
+App\UserComponent\Domain\Exception\InvalidAccessTokenException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\Exception\InvalidRefreshTokenException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\Exception\InvalidResetPasswordTokenException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\Exception\UserAlreadyExistsException
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  1/  1)[0m
+App\UserComponent\Domain\Exception\UserNotFoundException
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Domain\UseCase\DeleteUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Domain\UseCase\EditUserUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 14)[0m
+App\UserComponent\Domain\UseCase\GetAuthenticatedUserUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Domain\UseCase\LoginUseCase
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 13/ 13)[0m
+App\UserComponent\Domain\UseCase\RefreshTokenUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 15)[0m
+App\UserComponent\Domain\UseCase\RegisterUseCase
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 18/ 18)[0m
+App\UserComponent\Domain\UseCase\RequestPasswordResetEmailUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 11)[0m
+App\UserComponent\Domain\UseCase\ResetPasswordUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/ 14)[0m
+App\UserComponent\Domain\UseCase\ValidateResetPasswordTokenUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  9)[0m
+App\UserComponent\Domain\UseCase\VerifyUserEmailUseCase
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Infrastructure\Logging\Logging
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Infrastructure\Mailer\SmtpUserMailer
+  [37;41mMethods:   0.00% ( 0/ 3)[0m   [37;41mLines:   0.00% (  0/ 21)[0m
+App\UserComponent\Infrastructure\Messenger\SimpleCommandBus
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\UserComponent\Infrastructure\Messenger\SimpleQueryBus
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\UserComponent\Infrastructure\Storage\Doctrine\Repository\AbstractOrmRepository
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Infrastructure\Storage\Doctrine\Repository\UserOrmRepository
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/  6)[0m
+App\UserComponent\Infrastructure\Storage\Doctrine\TransactionOrmRepository
+  [37;41mMethods:   0.00% ( 0/ 4)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\UserComponent\Infrastructure\Storage\Identifiers\UniqueIdGenerator
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\UserComponent\Presentation\Controller\EditUserController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  8)[0m
+App\UserComponent\Presentation\Controller\GetAuthenticatedUserController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\UserComponent\Presentation\Controller\LoginController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  7)[0m
+App\UserComponent\Presentation\Controller\RefreshTokenController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  7)[0m
+App\UserComponent\Presentation\Controller\RegisterController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  7)[0m
+App\UserComponent\Presentation\Controller\RequestPasswordResetEmailController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  7)[0m
+App\UserComponent\Presentation\Controller\ResetPasswordController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 12)[0m
+App\UserComponent\Presentation\Controller\ValidateResetPasswordTokenController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\UserComponent\Presentation\Exception\ExceptionToResponseResolver
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 13)[0m
+App\UserComponent\Presentation\Swagger\UserSwagger
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m

@@ -10,6 +10,7 @@ use App\UserComponent\Domain\Exception\InvalidRefreshTokenException;
 use App\UserComponent\Domain\Exception\UserNotFoundException;
 use App\UserComponent\Domain\Jwt\JwtServiceInterface;
 use App\UserComponent\Domain\Repository\UserRepositoryInterface;
+use Exception;
 
 class RefreshTokenUseCase
 {
@@ -30,7 +31,7 @@ class RefreshTokenUseCase
         try {
             $userId = $this->jwtService->getSubject($refreshToken);
         } catch (Exception $e) {
-            throw new InvalidRefreshTokenException();
+            throw new InvalidRefreshTokenException($e->getMessage());
         }
 
         $user = $this->userRepository->findById($userId);
@@ -45,6 +46,7 @@ class RefreshTokenUseCase
         }
         $accessToken = $this->jwtService->generateAccessToken(user: $user);
         $user->setAccessToken($accessToken);
+
         $this->userRepository->save($user);
 
         return $user;

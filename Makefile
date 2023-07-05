@@ -62,6 +62,9 @@ test-unit:
 tests-all:
 	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit
 
+test-cover:
+	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --coverage-text > test-coverage.txt
+
 # Code style
 
 cs-fix-dry:

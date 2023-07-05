@@ -86,6 +86,7 @@ class RegisterUseCaseTest extends TestCase
             termsAccepted: self::TERMS_ACCEPTED
         );
 
+        $this->assertInstanceOf(User::class, $user);
         $this->assertEquals($registeredUser, $user);
     }
 

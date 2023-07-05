@@ -193,7 +193,7 @@ class User
         return $this->accessToken;
     }
 
-    public function setAccessToken(?string $accessToken): void
+    public function setAccessToken(string $accessToken): void
     {
         $this->accessToken = $accessToken;
     }

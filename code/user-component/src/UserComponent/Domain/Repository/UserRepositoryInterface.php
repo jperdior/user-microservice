@@ -15,4 +15,6 @@ interface UserRepositoryInterface
     public function findByResetPasswordToken(string $resetPasswordToken): ?User;
 
     public function findById(string $id): ?User;
+
+    public function delete(User $user): void;
 }
