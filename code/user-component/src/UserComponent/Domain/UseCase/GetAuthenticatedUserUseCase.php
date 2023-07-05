@@ -10,19 +10,14 @@ use App\UserComponent\Domain\Security\SecurityInterface;
 
 class GetAuthenticatedUserUseCase
 {
-
     public function __construct(
         private readonly SecurityInterface $security,
         private readonly UserRepositoryInterface $userRepository
-    )
-    {
+    ) {
     }
 
     public function execute(
-    ): User
-    {
+    ): User {
         return $this->userRepository->findById($this->security->getUser()->getId());
-
     }
-
 }

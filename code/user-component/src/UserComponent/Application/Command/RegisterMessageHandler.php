@@ -7,22 +7,18 @@ namespace App\UserComponent\Application\Command;
 use App\UserComponent\Application\DataTransformer\UserDataTransformer;
 use App\UserComponent\Domain\Exception\UserAlreadyExistsException;
 use App\UserComponent\Domain\Repository\TransactionRepositoryInterface;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use App\UserComponent\Domain\UseCase\RegisterUseCase;
-use Exception;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
 class RegisterMessageHandler
 {
-
     public function __construct(
         private readonly TransactionRepositoryInterface $transactionRepository,
         private readonly RegisterUseCase $registerUseCase,
         private readonly UserDataTransformer $userDataTransformer
-    )
-    {
+    ) {
     }
-
 
     /**
      * @throws UserAlreadyExistsException
@@ -41,11 +37,9 @@ class RegisterMessageHandler
             );
             $this->userDataTransformer->writeAuthTokens(user: $user, userSwagger: $message->getUserSwagger());
             $this->transactionRepository->commit();
-        }
-        catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->transactionRepository->rollback();
             throw $e;
         }
     }
-
 }

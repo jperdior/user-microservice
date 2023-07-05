@@ -12,4 +12,3 @@ interface UserMailerInterface
 
     public function sendVerificationEmail(User $user): void;
 }
-

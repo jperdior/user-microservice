@@ -19,5 +19,4 @@ interface JwtServiceInterface
     public function getSubject(string $jwt): string;
 
     public function isExpired(string $jwt): bool;
-
 }

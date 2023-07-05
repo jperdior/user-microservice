@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\UserComponent\Presentation\Swagger;
 
-use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
@@ -147,7 +147,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 class UserSwagger
 {
-
     #[ApiProperty(
         description: 'Identifier',
         identifier: true,
@@ -156,7 +155,7 @@ class UserSwagger
     public ?string $id = null;
 
     #[Groups(
-        ['read','jwt']
+        ['read', 'jwt']
     )]
     public ?string $plainId = null;
 
@@ -165,7 +164,7 @@ class UserSwagger
         example: 'test@example.com',
     )]
     #[Groups(
-        ['read','register','login','request-reset-email','update','jwt']
+        ['read', 'register', 'login', 'request-reset-email', 'update', 'jwt']
     )]
     #[Assert\Type(
         type: 'string',
@@ -180,9 +179,9 @@ class UserSwagger
     )]
     #[Assert\NotBlank(
         message: 'Email cannot be blank',
-        groups: ['register','login','request-reset-email']
+        groups: ['register', 'login', 'request-reset-email']
     )]
-    #[Assert\NotNull(groups: ['register','login','request-reset-email'])]
+    #[Assert\NotNull(groups: ['register', 'login', 'request-reset-email'])]
     public ?string $email = null;
 
     #[ApiProperty(
@@ -190,7 +189,7 @@ class UserSwagger
         example: 'John',
     )]
     #[Groups(
-        ['read','register','update']
+        ['read', 'register', 'update']
     )]
     #[Assert\Type(
         type: 'string',
@@ -212,7 +211,7 @@ class UserSwagger
         example: 'Doe',
     )]
     #[Groups(
-        ['read','register','update']
+        ['read', 'register', 'update']
     )]
     #[Assert\Type(
         type: 'string',
@@ -234,7 +233,7 @@ class UserSwagger
         example: 'StrongPassword',
     )]
     #[Groups(
-        ['register','login','reset-password','update']
+        ['register', 'login', 'reset-password', 'update']
     )]
     #[Assert\Type(
         type: 'string',
@@ -246,9 +245,9 @@ class UserSwagger
     )]
     #[Assert\NotBlank(
         message: 'Password cannot be blank',
-        groups: ['register','login','reset-password']
+        groups: ['register', 'login', 'reset-password']
     )]
-    #[Assert\NotNull(groups: ['register','login','reset-password'])]
+    #[Assert\NotNull(groups: ['register', 'login', 'reset-password'])]
     public ?string $password;
 
     #[Groups(
@@ -261,7 +260,7 @@ class UserSwagger
         example: 'asdfjkaljgsfnmoisfndodsa',
     )]
     #[Groups(
-        ['jwt','refresh-token']
+        ['jwt', 'refresh-token']
     )]
     #[Assert\NotBlank(
         message: 'Password cannot be blank',
@@ -275,7 +274,7 @@ class UserSwagger
         example: 'asdfjkaljgsfnmoisfndodsa',
     )]
     #[Groups(
-        ['reset-password-token','reset-password']
+        ['reset-password-token', 'reset-password']
     )]
     #[Assert\NotBlank(
         message: 'Reset Password Token cannot be blank',
@@ -300,7 +299,7 @@ class UserSwagger
     public ?bool $passwordReset = null;
 
     #[Groups(
-        ['read','register','update']
+        ['read', 'register', 'update']
     )]
     #[Assert\Type(
         type: 'bool',
@@ -309,12 +308,11 @@ class UserSwagger
     public bool $newsletter = false;
 
     #[Groups(
-        ['read','register']
+        ['read', 'register']
     )]
     #[Assert\Type(
         type: 'bool',
         message: 'The value {{ value }} is not a valid {{ type }}.',
     )]
     public bool $termsAccepted = false;
-
 }

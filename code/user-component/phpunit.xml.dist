@@ -18,8 +18,11 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Functional">
+            <directory>tests/Functional</directory>
         </testsuite>
     </testsuites>
 
@@ -28,6 +31,11 @@
             <directory suffix=".php">src</directory>
         </include>
     </coverage>
+
+<!--    <logging>-->
+<!--        <log type="coverage-html" target="coverage-report" charset="UTF-8" showUncoveredFiles="true" showOnlySummary="false"/>-->
+<!--    </logging>-->
+
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />

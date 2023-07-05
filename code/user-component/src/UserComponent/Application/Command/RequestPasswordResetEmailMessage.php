@@ -11,7 +11,8 @@ class RequestPasswordResetEmailMessage implements CommandMessage
 {
     public function __construct(
         public UserSwagger $userSwagger
-    ) {}
+    ) {
+    }
 
     public function getUserSwagger(): UserSwagger
     {

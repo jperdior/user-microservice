@@ -48,19 +48,27 @@ shell:
 # Tests
 
 tests-functional:
-	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite functional
+	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite Functional
 
 tests-unit:
-	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite unit
+	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite Unit
 
 test-functional:
-	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite functional --filter ${TEST}
+	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite Functional --filter ${TEST}
 
 test-unit:
-	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite unit --filter ${TEST}
+	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit --testsuite Unit --filter ${TEST}
 
 tests-all:
 	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php bin/phpunit
+
+# Code style
+
+cs-fix-dry:
+	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php vendor/bin/php-cs-fixer fix --dry-run --diff
+
+cs-fix:
+	@${DOCKER_COMPOSE} exec ${USER_CONTAINER} php vendor/bin/php-cs-fixer fix
 
 # Open
 

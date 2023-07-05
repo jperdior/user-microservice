@@ -8,19 +8,16 @@ use App\UserComponent\Domain\Entity\User;
 use App\UserComponent\Domain\Jwt\JwtServiceInterface;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-use Exception;
 
 class JwtService implements JwtServiceInterface
 {
-
-
     public function generateAccessToken(User $user): string
     {
         $payload = [
             'sub' => $user->getId(),
             'type' => 'access',
             'iat' => time(),
-            //time + 1 day
+            // time + 1 day
             'exp' => time() + 86400,
             'revoked' => false,
         ];
@@ -38,7 +35,7 @@ class JwtService implements JwtServiceInterface
             'sub' => $user->getId(),
             'type' => 'refresh',
             'iat' => time(),
-            //time + 2 weeks
+            // time + 2 weeks
             'exp' => time() + 1209600,
             'revoked' => false,
         ];
@@ -56,7 +53,7 @@ class JwtService implements JwtServiceInterface
             'sub' => $user->getId(),
             'type' => 'reset-password',
             'iat' => time(),
-            //time + 1 day
+            // time + 1 day
             'exp' => time() + 86400,
             'revoked' => false,
         ];
@@ -69,34 +66,33 @@ class JwtService implements JwtServiceInterface
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function isExpired(string $jwt): bool
     {
         $decoded = $this->decode($jwt);
+
         return $decoded['exp'] < time();
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function getSubject(string $jwt): string
     {
         $decoded = $this->decode($jwt);
+
         return $decoded['sub'];
     }
 
-
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function decode(string $jwt): array
     {
         return (array) JWT::decode(
             $jwt,
-            new Key(getenv('JWT_KEY'),'HS256'),
+            new Key(getenv('JWT_KEY'), 'HS256'),
         );
-
     }
-
 }

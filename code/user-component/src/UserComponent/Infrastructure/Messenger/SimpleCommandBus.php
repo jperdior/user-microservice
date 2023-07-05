@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\UserComponent\Infrastructure\Messenger;
 
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 class SimpleCommandBus
 {

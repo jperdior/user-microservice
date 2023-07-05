@@ -9,15 +9,13 @@ use App\UserComponent\Presentation\Swagger\UserSwagger;
 
 class ResetPasswordMessage implements CommandMessage
 {
-
     public function __construct(
         private UserSwagger $userSwagger
-    ){}
+    ) {
+    }
 
     public function getUserSwagger(): UserSwagger
     {
         return $this->userSwagger;
     }
-
-
 }

@@ -10,12 +10,10 @@ use App\UserComponent\Domain\Security\SecurityInterface;
 
 class EditUserUseCase
 {
-
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
         private readonly SecurityInterface $security,
-    )
-    {
+    ) {
     }
 
     public function execute(
@@ -24,32 +22,31 @@ class EditUserUseCase
         ?string $email,
         ?string $password,
         ?bool $newsletter,
-    ): ?User
-    {
+    ): ?User {
         $user = $this->userRepository->findById($this->security->getUser()->getId());
 
-        if ($name !== null) {
+        if (null !== $name) {
             $user->setName($name);
         }
 
-        if ($lastName !== null) {
+        if (null !== $lastName) {
             $user->setLastName($lastName);
         }
 
-        if ($email !== null) {
+        if (null !== $email) {
             $user->setEmail($email);
         }
 
-        if ($newsletter !== null) {
+        if (null !== $newsletter) {
             $user->setNewsletter($newsletter);
         }
 
-        if ($password !== null) {
+        if (null !== $password) {
             $user->setPassword($password);
         }
 
         $this->userRepository->save($user);
+
         return $user;
     }
-
 }

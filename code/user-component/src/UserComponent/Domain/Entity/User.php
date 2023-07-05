@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace App\UserComponent\Domain\Entity;
 
-use DateTime;
-use Exception;
-
 class User
 {
-
     private string $id;
 
     private string $name;
@@ -36,11 +32,11 @@ class User
 
     private ?string $resetPasswordToken;
 
-    private ?DateTime $resetPasswordTokenExpiresAt;
+    private ?\DateTime $resetPasswordTokenExpiresAt;
 
-    private DateTime $createdAt;
+    private \DateTime $createdAt;
 
-    private DateTime $updatedAt;
+    private \DateTime $updatedAt;
 
     private array $roles = [];
 
@@ -48,14 +44,13 @@ class User
 
     private bool $trialUsed;
 
-
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct()
     {
-        $this->createdAt = new DateTime();
-        $this->updatedAt = new DateTime();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
         $this->salt = bin2hex(random_bytes(16));
         $this->verifyEmailToken = bin2hex(random_bytes(16));
         $this->verifiedEmail = false;
@@ -115,12 +110,12 @@ class User
 
     private function encodePassword(string $password): string
     {
-        return password_hash($password . $this->salt, PASSWORD_DEFAULT);
+        return password_hash($password.$this->salt, PASSWORD_DEFAULT);
     }
 
     public function validatePassword(string $password): bool
     {
-        return password_verify($password . $this->salt, $this->password);
+        return password_verify($password.$this->salt, $this->password);
     }
 
     public function getSalt(): string
@@ -133,22 +128,22 @@ class User
         $this->salt = $salt;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTime $createdAt): void
+    public function setCreatedAt(\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTime $updatedAt): void
+    public function setUpdatedAt(\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -227,6 +222,7 @@ class User
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
+
         return array_unique($roles);
     }
 
@@ -250,14 +246,13 @@ class User
         $this->trialUsed = $trialUsed;
     }
 
-    public function getResetPasswordTokenExpiresAt(): ?DateTime
+    public function getResetPasswordTokenExpiresAt(): ?\DateTime
     {
         return $this->resetPasswordTokenExpiresAt;
     }
 
-    public function setResetPasswordTokenExpiresAt(?DateTime $resetPasswordTokenExpiresAt): void
+    public function setResetPasswordTokenExpiresAt(?\DateTime $resetPasswordTokenExpiresAt): void
     {
         $this->resetPasswordTokenExpiresAt = $resetPasswordTokenExpiresAt;
     }
-
 }

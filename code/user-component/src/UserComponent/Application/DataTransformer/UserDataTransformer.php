@@ -28,5 +28,4 @@ class UserDataTransformer
         $userSwagger->refreshToken = $user->getRefreshToken();
         $userSwagger->trialUsed = $user->isTrialUsed();
     }
-
 }

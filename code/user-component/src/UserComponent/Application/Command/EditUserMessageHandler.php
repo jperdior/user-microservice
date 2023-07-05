@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace App\UserComponent\Application\Command;
 
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use App\UserComponent\Domain\UseCase\EditUserUseCase;
-use Exception;
 use App\UserComponent\Application\DataTransformer\UserDataTransformer;
 use App\UserComponent\Domain\Repository\TransactionRepositoryInterface;
+use App\UserComponent\Domain\UseCase\EditUserUseCase;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class EditUserMessageHandler{
-
+class EditUserMessageHandler
+{
     public function __construct(
         private readonly EditUserUseCase $editUserUseCase,
         private readonly UserDataTransformer $userDataTransformer,
         private readonly TransactionRepositoryInterface $transactionRepository
-    )
-    {}
+    ) {
+    }
 
     public function __invoke(EditUserMessage $message): void
     {
-        try{
+        try {
             $this->transactionRepository->open();
             $user = $this->editUserUseCase->execute(
                 name: $message->getUserSwagger()->name,
@@ -36,11 +35,9 @@ class EditUserMessageHandler{
                 userSwagger: $message->getUserSwagger()
             );
             $this->transactionRepository->commit();
-        }
-        catch (Exception $e){
+        } catch (\Exception $e) {
             $this->transactionRepository->rollback();
             throw $e;
         }
     }
-
 }

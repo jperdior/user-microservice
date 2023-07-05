@@ -4,26 +4,22 @@ declare(strict_types=1);
 
 namespace App\UserComponent\Application\Command;
 
+use App\UserComponent\Application\DataTransformer\UserDataTransformer;
 use App\UserComponent\Domain\Exception\IncorrectEmailOrPasswordException;
 use App\UserComponent\Domain\Exception\UserNotFoundException;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use App\UserComponent\Domain\UseCase\LoginUseCase;
 use App\UserComponent\Domain\Repository\TransactionRepositoryInterface;
-use App\UserComponent\Application\DataTransformer\UserDataTransformer;
-use Exception;
+use App\UserComponent\Domain\UseCase\LoginUseCase;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
 class LoginMessageHandler
 {
-
     public function __construct(
         private readonly LoginUseCase $loginUseCase,
         private readonly TransactionRepositoryInterface $transactionRepository,
         private readonly UserDataTransformer $userDataTransformer
-    )
-    {
+    ) {
     }
-
 
     /**
      * @throws IncorrectEmailOrPasswordException
@@ -42,10 +38,9 @@ class LoginMessageHandler
                 userSwagger: $message->getUserSwagger()
             );
             $this->transactionRepository->commit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->transactionRepository->rollBack();
             throw $e;
         }
     }
-
 }

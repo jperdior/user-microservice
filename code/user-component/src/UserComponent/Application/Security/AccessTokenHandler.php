@@ -7,10 +7,9 @@ namespace App\UserComponent\Application\Security;
 use App\UserComponent\Application\Service\JwtService;
 use App\UserComponent\Domain\Exception\InvalidAccessTokenException;
 use App\UserComponent\Domain\Exception\UserNotFoundException;
+use App\UserComponent\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\Security\Http\AccessToken\AccessTokenHandlerInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
-use App\UserComponent\Domain\Repository\UserRepositoryInterface;
-use Exception;
 
 class AccessTokenHandler implements AccessTokenHandlerInterface
 {
@@ -21,18 +20,19 @@ class AccessTokenHandler implements AccessTokenHandlerInterface
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function getUserBadgeFrom(string $accessToken): UserBadge
     {
         $identifier = $this->jwtService->getSubject($accessToken);
         $user = $this->userRepository->findById($identifier);
-        if ($user === null) {
+        if (null === $user) {
             throw new UserNotFoundException();
         }
         if ($user->getAccessToken() !== $accessToken) {
             throw new InvalidAccessTokenException();
         }
+
         return new UserBadge($identifier);
     }
 }

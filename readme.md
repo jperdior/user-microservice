@@ -1,6 +1,6 @@
 # User microservice
 
-![test workflow](https://github.com/jperdior/user-microservice/actions/workflows/tests.yml/badge.svg)
+![unit_test workflow](https://github.com/jperdior/user-microservice/actions/workflows/unit-tests.yml/badge.svg)
 
 ## Description
 

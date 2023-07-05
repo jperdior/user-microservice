@@ -9,15 +9,13 @@ use App\UserComponent\Domain\Exception\ExpiredRefreshTokenException;
 use App\UserComponent\Domain\Exception\InvalidRefreshTokenException;
 use App\UserComponent\Domain\Exception\RevokedRefreshTokenException;
 use App\UserComponent\Domain\Exception\UserNotFoundException;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use App\UserComponent\Domain\UseCase\RefreshTokenUseCase;
 use App\UserComponent\Domain\Repository\TransactionRepositoryInterface;
-use Exception;
+use App\UserComponent\Domain\UseCase\RefreshTokenUseCase;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
 class RefreshTokenMessageHandler
 {
-
     public function __construct(
         private readonly RefreshTokenUseCase $refreshTokenUseCase,
         private readonly TransactionRepositoryInterface $transactionRepository,
@@ -38,10 +36,9 @@ class RefreshTokenMessageHandler
             $user = $this->refreshTokenUseCase->execute($message->getUserSwagger()->refreshToken);
             $this->userDataTransformer->writeAuthTokens(user: $user, userSwagger: $message->getUserSwagger());
             $this->transactionRepository->commit();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->transactionRepository->rollback();
             throw $e;
         }
     }
-
 }

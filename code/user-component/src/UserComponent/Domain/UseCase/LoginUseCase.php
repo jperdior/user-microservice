@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace App\UserComponent\Domain\UseCase;
 
+use App\UserComponent\Domain\Entity\User;
 use App\UserComponent\Domain\Exception\IncorrectEmailOrPasswordException;
 use App\UserComponent\Domain\Jwt\JwtServiceInterface;
 use App\UserComponent\Domain\Repository\UserRepositoryInterface;
-use App\UserComponent\Domain\Entity\User;
 
 class LoginUseCase
 {
-
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
         private readonly JwtServiceInterface $jwtService
-    )
-    {
+    ) {
     }
 
     /**
@@ -25,8 +23,7 @@ class LoginUseCase
     public function execute(
         string $email,
         string $password
-    ): User
-    {
+    ): User {
         $user = $this->userRepository->findByEmail($email);
         if (!$user) {
             throw new IncorrectEmailOrPasswordException();
@@ -42,7 +39,7 @@ class LoginUseCase
 
         $accessToken = $this->jwtService->generateAccessToken(user: $user);
         if (
-            $user->getRefreshToken() === null || $this->jwtService->isExpired($user->getRefreshToken())
+            null === $user->getRefreshToken() || $this->jwtService->isExpired($user->getRefreshToken())
         ) {
             $refreshToken = $this->jwtService->generateRefreshToken(user: $user);
             $user->setRefreshToken($refreshToken);
@@ -51,7 +48,5 @@ class LoginUseCase
         $this->userRepository->save($user);
 
         return $user;
-
     }
-
 }

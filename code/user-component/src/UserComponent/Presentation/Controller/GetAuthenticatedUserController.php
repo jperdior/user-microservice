@@ -6,11 +6,10 @@ namespace App\UserComponent\Presentation\Controller;
 
 use App\UserComponent\Application\Query\GetAuthenticatedUserMessage;
 use App\UserComponent\Infrastructure\Messenger\SimpleQueryBus;
+use App\UserComponent\Presentation\Exception\ExceptionToResponseResolver;
 use App\UserComponent\Presentation\Swagger\UserSwagger;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use App\UserComponent\Presentation\Exception\ExceptionToResponseResolver;
-use Exception;
 
 #[AsController]
 class GetAuthenticatedUserController
@@ -19,15 +18,11 @@ class GetAuthenticatedUserController
         SimpleQueryBus $simpleQueryBus,
         UserSwagger $userSwagger,
         ExceptionToResponseResolver $exceptionToResponseResolver,
-    ): JsonResponse|UserSwagger
-    {
-        try{
+    ): JsonResponse|UserSwagger {
+        try {
             return $simpleQueryBus->handle(query: new GetAuthenticatedUserMessage(userSwagger: $userSwagger));
-        }
-        catch(Exception $e){
+        } catch (\Exception $e) {
             return $exceptionToResponseResolver->exceptionToJsonResponse(exception: $e);
         }
-
     }
-
 }

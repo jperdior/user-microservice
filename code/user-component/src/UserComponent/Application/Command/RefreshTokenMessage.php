@@ -9,7 +9,6 @@ use App\UserComponent\Presentation\Swagger\UserSwagger;
 
 class RefreshTokenMessage implements CommandMessage
 {
-
     public function __construct(
         private UserSwagger $userSwagger,
     ) {
@@ -19,5 +18,4 @@ class RefreshTokenMessage implements CommandMessage
     {
         return $this->userSwagger;
     }
-
 }

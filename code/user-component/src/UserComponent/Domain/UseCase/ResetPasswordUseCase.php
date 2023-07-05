@@ -11,10 +11,10 @@ use App\UserComponent\Domain\Repository\UserRepositoryInterface;
 
 class ResetPasswordUseCase
 {
-
     public function __construct(
         private readonly UserRepositoryInterface $userRepository
-    ){}
+    ) {
+    }
 
     /**
      * @throws ExpiredResetPasswordTokenException
@@ -29,10 +29,10 @@ class ResetPasswordUseCase
         if (!$user) {
             throw new UserNotFoundException();
         }
-        if($user->getResetPasswordTokenExpiresAt() < new \DateTime()){
+        if ($user->getResetPasswordTokenExpiresAt() < new \DateTime()) {
             throw new ExpiredResetPasswordTokenException();
         }
-        if($resetPasswordToken !== $user->getResetPasswordToken()){
+        if ($resetPasswordToken !== $user->getResetPasswordToken()) {
             throw new InvalidResetPasswordTokenException();
         }
         $user->setPassword($newPassword);
@@ -40,8 +40,7 @@ class ResetPasswordUseCase
         $user->setAccessToken(null);
         $user->setRefreshToken(null);
         $this->userRepository->save($user);
+
         return true;
-
     }
-
 }

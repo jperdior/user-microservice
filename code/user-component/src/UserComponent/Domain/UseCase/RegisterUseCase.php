@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace App\UserComponent\Domain\UseCase;
 
 use App\UserComponent\Domain\Entity\Factory\UserFactory;
-use App\UserComponent\Domain\Exception\UserAlreadyExistsException;
-use App\UserComponent\Domain\Repository\UserRepositoryInterface;
 use App\UserComponent\Domain\Entity\User;
+use App\UserComponent\Domain\Exception\UserAlreadyExistsException;
 use App\UserComponent\Domain\Jwt\JwtServiceInterface;
+use App\UserComponent\Domain\Repository\UserRepositoryInterface;
 
 class RegisterUseCase
 {
-
     public function __construct(
         private readonly UserFactory $userFactory,
         private readonly UserRepositoryInterface $userRepository,
         private readonly JwtServiceInterface $jwtService
-    )
-    {
+    ) {
     }
 
     /**
@@ -31,8 +29,7 @@ class RegisterUseCase
         string $password,
         bool $newsletter,
         bool $termsAccepted,
-    ): User
-    {
+    ): User {
         $existingUser = $this->userRepository->findByEmail($email);
         if ($existingUser) {
             throw new UserAlreadyExistsException();
@@ -46,7 +43,7 @@ class RegisterUseCase
             newsletter: $newsletter,
             termsAccepted: $termsAccepted
         );
-        //Until email verification we give the access token back directly on register
+        // Until email verification we give the access token back directly on register
         $accessToken = $this->jwtService->generateAccessToken(user: $user);
         $refreshToken = $this->jwtService->generateRefreshToken(user: $user);
         $user->setAccessToken($accessToken);
@@ -56,6 +53,4 @@ class RegisterUseCase
 
         return $user;
     }
-
-
 }

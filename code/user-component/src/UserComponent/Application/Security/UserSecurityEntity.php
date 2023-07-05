@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserSecurityEntity extends User implements UserInterface
 {
-
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
@@ -29,7 +28,4 @@ class UserSecurityEntity extends User implements UserInterface
     {
         $this->id = $id;
     }
-
-
-
 }

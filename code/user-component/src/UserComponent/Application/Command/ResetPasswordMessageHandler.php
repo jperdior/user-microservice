@@ -7,11 +7,10 @@ namespace App\UserComponent\Application\Command;
 use App\UserComponent\Domain\Exception\ExpiredResetPasswordTokenException;
 use App\UserComponent\Domain\Exception\InvalidResetPasswordTokenException;
 use App\UserComponent\Domain\Exception\UserNotFoundException;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use App\UserComponent\Domain\UseCase\ResetPasswordUseCase;
 use App\UserComponent\Domain\Repository\TransactionRepositoryInterface;
+use App\UserComponent\Domain\UseCase\ResetPasswordUseCase;
 use Psr\Log\LoggerInterface;
-use Exception;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
 class ResetPasswordMessageHandler
@@ -20,7 +19,8 @@ class ResetPasswordMessageHandler
         private readonly ResetPasswordUseCase $resetPasswordUseCase,
         private readonly TransactionRepositoryInterface $transactionRepository,
         private readonly LoggerInterface $logger
-    ){}
+    ) {
+    }
 
     /**
      * @throws ExpiredResetPasswordTokenException
@@ -29,7 +29,7 @@ class ResetPasswordMessageHandler
      */
     public function __invoke(ResetPasswordMessage $message): void
     {
-        try{
+        try {
             $this->transactionRepository->open();
             $passwordReset = $this->resetPasswordUseCase->execute(
                 newPassword: $message->getUserSwagger()->password,
@@ -37,8 +37,7 @@ class ResetPasswordMessageHandler
             );
             $message->getUserSwagger()->passwordReset = $passwordReset;
             $this->transactionRepository->commit();
-        }
-        catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->transactionRepository->rollback();
             $this->logger->error($e->getMessage());
             throw $e;

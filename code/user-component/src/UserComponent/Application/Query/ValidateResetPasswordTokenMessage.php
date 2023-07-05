@@ -9,7 +9,6 @@ use App\UserComponent\Presentation\Swagger\UserSwagger;
 
 class ValidateResetPasswordTokenMessage implements QueryMessage
 {
-
     public function __construct(
         private UserSwagger $userSwagger,
     ) {
@@ -19,5 +18,4 @@ class ValidateResetPasswordTokenMessage implements QueryMessage
     {
         return $this->userSwagger;
     }
-
 }

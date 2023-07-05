@@ -11,7 +11,6 @@ use App\UserComponent\Presentation\Swagger\UserSwagger;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Exception;
 
 #[AsController]
 class ResetPasswordController
@@ -20,20 +19,18 @@ class ResetPasswordController
         ValidatorInterface $validator,
         SimpleCommandBus $commandBus,
         UserSwagger $userSwagger
-    ): JsonResponse | UserSwagger
-    {
+    ): JsonResponse|UserSwagger {
         $errors = $validator->validate($userSwagger);
 
         if (count($errors) > 0) {
             throw new ValidationException(constraintViolationList: $errors);
         }
-        try{
+        try {
             $commandBus->dispatch(new ResetPasswordMessage($userSwagger));
-        }
-        catch(Exception $e){
+        } catch (\Exception $e) {
             return new JsonResponse(
                 data: [
-                    'message' => $e->getMessage()
+                    'message' => $e->getMessage(),
                 ],
                 status: 400
             );

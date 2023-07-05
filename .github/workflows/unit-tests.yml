@@ -1,4 +1,4 @@
-name: Functional Tests
+name: Unit Tests
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   tests:
-    name: Run Tests
+    name: Run unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -25,5 +25,5 @@ jobs:
       - name: Install dependencies
         run: cd code/user-component && composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Run Tests
-        run: cd code/user-component && php bin/phpunit
+      - name: Run Unit Tests
+        run: cd code/user-component && php bin/phpunit --testsuite unit

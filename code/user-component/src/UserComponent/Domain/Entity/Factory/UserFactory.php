@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\UserComponent\Domain\Entity\Factory;
 
-use App\UserComponent\Domain\Entity\User;
 use App\UserComponent\Domain\Entity\UniqueIdGeneratorInterface;
+use App\UserComponent\Domain\Entity\User;
 
 class UserFactory
 {
-
     public function __construct(
         private readonly UniqueIdGeneratorInterface $uniqueIdGenerator
     ) {
@@ -22,8 +21,7 @@ class UserFactory
         string $password,
         bool $newsletter,
         bool $termsAccepted,
-    ): User
-    {
+    ): User {
         $user = new User();
         $user->setId($this->uniqueIdGenerator->generateUlid());
         $user->setName($name);
@@ -32,7 +30,7 @@ class UserFactory
         $user->setPassword($password);
         $user->setNewsletter($newsletter);
         $user->setTermsAccepted($termsAccepted);
+
         return $user;
     }
-
 }

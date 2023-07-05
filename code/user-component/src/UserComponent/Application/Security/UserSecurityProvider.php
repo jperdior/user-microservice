@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\UserComponent\Application\Security;
 
+use App\UserComponent\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use App\UserComponent\Domain\Repository\UserRepositoryInterface;
-use Exception;
 
 class UserSecurityProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
-
     public function __construct(
         private readonly UserRepositoryInterface $userRepository
-    )
-    {
+    ) {
     }
 
     /**
@@ -31,7 +28,6 @@ class UserSecurityProvider implements UserProviderInterface, PasswordUpgraderInt
      */
     public function loadUserByIdentifier(string $identifier): UserInterface
     {
-
         $user = $this->userRepository->findById($identifier);
         $userSecurity = new UserSecurityEntity();
         $userSecurity->setId($user->getId());
@@ -40,6 +36,7 @@ class UserSecurityProvider implements UserProviderInterface, PasswordUpgraderInt
         $userSecurity->setName($user->getName());
         $userSecurity->setLastName($user->getLastName());
         $userSecurity->setNewsletter($user->isNewsletter());
+
         return $userSecurity;
     }
 
@@ -54,8 +51,7 @@ class UserSecurityProvider implements UserProviderInterface, PasswordUpgraderInt
      * If your firewall is "stateless: true" (for a pure API), this
      * method is not called.
      *
-     * @return UserInterface
-     * @throws Exception
+     * @throws \Exception
      */
     public function refreshUser(UserInterface $user): UserInterface
     {

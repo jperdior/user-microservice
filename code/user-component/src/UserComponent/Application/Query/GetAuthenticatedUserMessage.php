@@ -9,16 +9,13 @@ use App\UserComponent\Presentation\Swagger\UserSwagger;
 
 class GetAuthenticatedUserMessage implements QueryMessage
 {
-
     public function __construct(
         private UserSwagger $userSwagger,
-    )
-    {
+    ) {
     }
 
     public function getUserSwagger(): UserSwagger
     {
         return $this->userSwagger;
     }
-
 }
