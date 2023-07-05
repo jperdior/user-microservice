@@ -25,7 +25,7 @@ class LoginUseCase
         string $password
     ): User {
         $user = $this->userRepository->findByEmail($email);
-        if (!$user) {
+        if ($user === null) {
             throw new IncorrectEmailOrPasswordException();
         }
 

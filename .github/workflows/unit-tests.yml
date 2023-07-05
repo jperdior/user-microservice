@@ -26,4 +26,4 @@ jobs:
         run: cd code/user-component && composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Unit Tests
-        run: cd code/user-component && php bin/phpunit --testsuite unit
+        run: cd code/user-component && php bin/phpunit --testsuite Unit

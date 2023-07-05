@@ -6,6 +6,7 @@ namespace App\Tests\Unit\UserComponent\Domain\UseCase;
 
 use App\UserComponent\Domain\Entity\Factory\UserFactory;
 use App\UserComponent\Domain\Entity\User;
+use App\UserComponent\Domain\Exception\UserAlreadyExistsException;
 use App\UserComponent\Domain\Jwt\JwtServiceInterface;
 use App\UserComponent\Domain\Repository\UserRepositoryInterface;
 use App\UserComponent\Domain\UseCase\RegisterUseCase;
@@ -90,5 +91,33 @@ class RegisterUseCaseTest extends TestCase
 
     public function testUserAlreadyExists(): void
     {
+        $userRepository = $this->createMock(UserRepositoryInterface::class);
+        $userFactory = $this->createMock(UserFactory::class);
+        $jwtService = $this->createMock(JwtServiceInterface::class);
+
+        $useCase = new RegisterUseCase(
+            userFactory: $userFactory,
+            userRepository: $userRepository,
+            jwtService: $jwtService
+        );
+
+        $userRepository->expects($this->once())
+            ->method('findByEmail')
+            ->with(
+                email: self::EMAIL
+            )
+            ->willReturn(new User());
+
+        $this->expectException(UserAlreadyExistsException::class);
+
+        $useCase->execute(
+            name: self::NAME,
+            lastName: self::LAST_NAME,
+            email: self::EMAIL,
+            password: self::PASSWORD,
+            newsletter: self::NEWSLETTER,
+            termsAccepted: self::TERMS_ACCEPTED
+        );
+
     }
 }
