@@ -23,7 +23,7 @@
 
         <field name="salt" column="salt" type="string" length="32" nullable="false"/>
 
-        <field name="verifyEmailToken" column="verify_email_token" type="string" length="32" nullable="false"/>
+        <field name="verifyEmailToken" column="verify_email_token" type="string" length="32" nullable="true"/>
 
         <field name="verifiedEmail" column="verified_email" type="boolean" nullable="false"/>
 

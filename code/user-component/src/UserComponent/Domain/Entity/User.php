@@ -18,7 +18,7 @@ class User
 
     private string $salt;
 
-    private string $verifyEmailToken;
+    private ?string $verifyEmailToken;
 
     private bool $verifiedEmail;
 
@@ -148,12 +148,12 @@ class User
         $this->updatedAt = $updatedAt;
     }
 
-    public function getVerifyEmailToken(): string
+    public function getVerifyEmailToken(): ?string
     {
         return $this->verifyEmailToken;
     }
 
-    public function setVerifyEmailToken(string $verifyEmailToken): void
+    public function setVerifyEmailToken(?string $verifyEmailToken): void
     {
         $this->verifyEmailToken = $verifyEmailToken;
     }
@@ -193,7 +193,7 @@ class User
         return $this->accessToken;
     }
 
-    public function setAccessToken(string $accessToken): void
+    public function setAccessToken(?string $accessToken): void
     {
         $this->accessToken = $accessToken;
     }

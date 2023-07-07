@@ -8,7 +8,7 @@ class InvalidRefreshTokenException extends \Exception
 {
     public const MESSAGE = 'Invalid refresh token: %s';
 
-    public function __construct(?string $message)
+    public function __construct(?string $message = null)
     {
         if(!$message){
             $message = 'Invalid refresh token';

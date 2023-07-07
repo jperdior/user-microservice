@@ -16,5 +16,7 @@ interface UserRepositoryInterface
 
     public function findById(string $id): ?User;
 
+    public function findByVerifyEmailToken(string $verifyEmailToken): ?User;
+
     public function delete(User $user): void;
 }

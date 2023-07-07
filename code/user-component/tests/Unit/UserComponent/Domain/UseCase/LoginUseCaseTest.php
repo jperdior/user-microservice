@@ -35,6 +35,10 @@ class LoginUseCaseTest extends TestCase
             ->willReturn($loggedUser);
 
         $loggedUser->expects($this->once())
+            ->method('isVerifiedEmail')
+            ->willReturn(true);
+
+        $loggedUser->expects($this->once())
             ->method('validatePassword')
             ->with(
                 password: self::PASSWORD
@@ -92,6 +96,10 @@ class LoginUseCaseTest extends TestCase
                 email: self::EMAIL
             )
             ->willReturn($loggedUser);
+
+        $loggedUser->expects($this->once())
+            ->method('isVerifiedEmail')
+            ->willReturn(true);
 
         $loggedUser->expects($this->once())
             ->method('validatePassword')
@@ -182,6 +190,10 @@ class LoginUseCaseTest extends TestCase
                 email: self::EMAIL
             )
             ->willReturn($loggedUser);
+
+        $loggedUser->expects($this->once())
+            ->method('isVerifiedEmail')
+            ->willReturn(true);
 
         $loggedUser->expects($this->once())
             ->method('validatePassword')

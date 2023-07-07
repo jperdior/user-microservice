@@ -6,6 +6,7 @@ namespace App\UserComponent\Domain\UseCase;
 
 use App\UserComponent\Domain\Entity\User;
 use App\UserComponent\Domain\Exception\IncorrectEmailOrPasswordException;
+use App\UserComponent\Domain\Exception\UserNotVerifiedException;
 use App\UserComponent\Domain\Jwt\JwtServiceInterface;
 use App\UserComponent\Domain\Repository\UserRepositoryInterface;
 
@@ -19,6 +20,7 @@ class LoginUseCase
 
     /**
      * @throws IncorrectEmailOrPasswordException #When password is incorrect
+     * @throws UserNotVerifiedException
      */
     public function execute(
         string $email,
@@ -29,9 +31,9 @@ class LoginUseCase
             throw new IncorrectEmailOrPasswordException();
         }
 
-        /*if (!$user->isVerifiedEmail()) {
-            throw new Exception('User not verified');
-        }*/
+        if (!$user->isVerifiedEmail()) {
+            throw new UserNotVerifiedException();
+        }
 
         if (!$user->validatePassword($password)) {
             throw new IncorrectEmailOrPasswordException();

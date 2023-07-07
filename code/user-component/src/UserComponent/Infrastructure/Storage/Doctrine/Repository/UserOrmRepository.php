@@ -35,6 +35,11 @@ class UserOrmRepository extends AbstractOrmRepository implements UserRepositoryI
         return $this->findOneBy(['resetPasswordToken' => $resetPasswordToken]);
     }
 
+    public function findByVerifyEmailToken(string $verifyEmailToken): ?User
+    {
+        return $this->findOneBy(['verifyEmailToken' => $verifyEmailToken]);
+    }
+
     public function delete(User $user): void
     {
         $this->_em->remove($user);

@@ -145,6 +145,22 @@ use Symfony\Component\Validator\Constraints as Assert;
             ],
             read: false
         ),
+        new Put(
+            uriTemplate: '/user/verify-email',
+            status: 201,
+            controller: EditUserController::class,
+            openapiContext: [
+                'summary' => 'Verifies the email',
+                'description' => 'Verifies the email',
+            ],
+            normalizationContext: [
+                'groups' => ['read'],
+            ],
+            denormalizationContext: [
+                'groups' => ['verify-email-token'],
+            ],
+            read: false
+        ),
         new Delete(
             uriTemplate: '/user',
             status: 200,
@@ -297,6 +313,20 @@ class UserSwagger
     )]
     #[Assert\NotNull(groups: ['reset-password-token', 'reset-password'])]
     public string $resetPasswordToken;
+
+    #[ApiProperty(
+        description: 'Verify Email Token',
+        example: 'asdfjkaljgsfnmoisfndodsa',
+    )]
+    #[Groups(
+        ['verify-email-token']
+    )]
+    #[Assert\NotBlank(
+        message: 'Verify email Token cannot be blank',
+        groups: ['verify-email-token']
+    )]
+    #[Assert\NotNull(groups: ['verify-email-token'])]
+    public string $verifyEmailToken;
 
     #[Groups(
         ['read']
